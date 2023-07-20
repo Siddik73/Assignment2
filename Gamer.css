@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:wght@400;700&display=swap');
+
+
+* {
+
+    font-family: 'Josefin Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+
+
+nav {
+    background-color: rgb(242, 244, 247);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 45px;
+    padding-right: 8%;
+    padding-left: 8%;
+
+}
+
+h1 {
+    color: black;
+    font-size: 2.3rem;
+
+}
+
+span {
+    color: rgb(226, 27, 183);
+}
+
+nav {
+    padding-top: 1px;
+    /* padding-bottom: 15px; */
+    /* // height: 50px; */
+}
+
+nav ul.right li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0px 10px;
+
+
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+nav ul.left li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0px 10px;
+
+}
+
+a {
+    font-style: none;
+    text-decoration: none;
+    text-transform: capitalize;
+
+}
+
+#follow {
+    background-color: rgb(129, 125, 125);
+    border-radius: 4.5px;
+
+}
+
+
+
+
+/* 1st section */
+.first {
+    background-color: #f3ebf3;
+}
+
+/* banner part  */
+
+.first {
+    display: flex;
+    color: rgb(73, 58, 39);
+    justify-content: space-around;
+}
+
+/* .first {
+    display: flex;
+    justify-content: space-around;
+} */
+
+img.grp-18 {
+    height: 490px;
+    width: 481px;
+}
+
+
+P.upercase {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+p#goat {
+    color: rgb(238, 79, 243);
+    font-size: 4rem;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.banner-button {
+    display: flex;
+    justify-content: space-around;
+}
+
+div.banner-button button {
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    font-weight: 600;
+
+    background-color: rgb(15, 224, 224);
+    border: none;
+
+}
+
+div.banner-button button a {
+    color: #FFF;
+}
+
+div.banner-button button.sign-in {
+    background-color: #FF00FF;
+}
+
+
+/* 2nd sectin */
+/* 2nd banner */
+
+.secoend {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gamer {
+    text-align: right;
+}
+
+.gamer h1 {
+    font-weight: 900;
+    color: #eb318e;
+}
+
+.gamer a {
+    background-color: #bb126f;
+    color: #FFF;
+    text-decoration: none;
+    /* border: 2px solid transparent; */
+    padding: 10px 25px;
+    border-radius: 30px;
+
+}
+
+.gamer p.purpose {
+    font-size: 18px;
+}
+
+.gamer h4 {
+    font-size: 20px;
+}
+
+/* online game section */
+
+.games {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h1.online {
+    text-align: center;
+    color: #FF00FF;
+
+}
+
+.online-game p {
+    text-align: center;
+
+}
+
+
+
+/* 3rd banner */
+
+.play {
+    display: flex;
+    flex-direction: column;
+}
+
+.black {
+    color: black;
+}
+
+.third-banner {
+    margin-top: 30px;
+}
+
+.third-banner h1 {
+    text-align: right;
+    color: #FF00FF;
+
+}
+
+.third-banner p {
+    text-align: end;
+}
+
+.third-banner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.third-img {
+    position: relative;
+}
+
+.overflow-img {
+    position: absolute;
+    top: 80%;
+    left: 8%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Fourth section */
+.demo {
+    display: flex;
+    background-color: #d82292;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.fourth-img {
+    height: 820px;
+    width: 510px;
+}
+
+
+
+.careers {
+
+    /* background-color: #cabdca; */
+    background-image: url(.//images/Group\ 14.png);
+    background-repeat: none;
+    justify-content: center;
+
+
+}
+
+.white {
+    color: #FFF;
+}
+
+.careers a {
+    text-transform: uppercase;
+    font-weight: 800;
+    background-color: #FFF;
+    color: #d82292;
+    text-decoration: none;
+    border: 2px solid transparent;
+    padding: 10px 25px;
+    border-radius: 30px;
+
+}
+
+.country {
+    display: flex;
+    justify-content: space-between;
+    color: #FFF;
+}
+
+/* .careers h1,
+p {
+    color: #FFF;
+} */
+
+
+.country .country-right {
+    text-align: right;
+}
+
+
+/* Catagory  */
+
+
+
+
+
+.top-links {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.bottom-links {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.catagory-game {
+    display: flex;
+    /* justify-content: space-around; */
+    text-align: center;
+    justify-content: center;
+
+}
+
+.list {
+    /* border: 1px solid red; */
+    /* padding-left:0; */
+    margin: 0 30px;
+    width: 250px;
+    height: 70px;
+    border-radius: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: black;
+    background-color: #f3ebf3;
+
+}
+
+.list img {
+    margin-right: 15px;
+}
+
+.list:hover {
+    border: 2px solid green;
+    background-color: black;
+    color: #FFF;
+
+}
+
+
+.game-link {
+    height: 250px;
+}
+
+
+/* Footer */
+footer {
+    background-color: #111011;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.end-icon {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+}
+
+.last-icon {
+    height: 40px;
+    margin-right: 10px;
+
+
+}
+
+.end-icon h1 {
+    color: #FFF;
+}
+
+
+.six-link {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+
+}
+
+.six-link a {
+    color: #FFF;
+    font-size: 20px;
+    padding: 15px 15px 15px 0;
+}
+
+
+.social-link {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.social-link a {
+    font-size: 30px;
+    color: #FFF;
+    padding: 20px 25PX;
+}
+
+.term {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.term a {
+    font-size: 15px;
+    color: #FFF;
+    padding: 20px 25PX;
+}
+
+p.last {
+    color: #FFF;
+    text-align: center;
+}
+
+
+.games-img img:hover {
+    filter: blur(5px);
+}
+
+
+.online-game .games div {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin: 20px;
+}
+
+
+.online-game .games p {
+    margin-top: 10px;
+}
+
+/* Apply overlay and blur effect on image hover */
+.online-game .games div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    color: #fff;
+    font-size: 24px;
+    z-index: 1;
+    /* Ensure the overlay is above the image */
+    transition: opacity 0.3s ease;
+}
+
+.online-game .games div:hover::before {
+    opacity: 1;
+    content: "🎮 Play Now";
+    /* Show the overlay and set the content on hover */
+}
+
+
+
+
+@media (max-width: 600px) {
+    .nav-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+
+    .first {
+        display: inline;
+        flex-direction: column-reverse
+    }
+
+    .secoend {
+        display: inline;
+    }
+
+    .secoend img {
+        width: 100%;
+    }
+
+    .games {
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+
+
+    .third-banner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+
+    }
+
+    .third-img {
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .overflow-main-img {
+        width: 100%;
+    }
+
+    .overflow-img {
+        width: 50%;
+        position: absolute;
+        left: 110px;
+    }
+
+    .demo {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fourth-img img {
+        width: 100%;
+    }
+
+    .top-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bottom-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .six-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-link {
+        height: auto;
+    }
+}
