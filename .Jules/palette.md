@@ -1,3 +1,0 @@
-## 2024-05-24 - Semantic HTML and Live Regions for Mini-Games
-**Learning:** Found a custom interactive mini-game in `Index.html` where the main interactive element (`#brick-2d`) was implemented using a non-semantic `<div>` without keyboard focusability. Also, dynamic updates to the score and messages were not announced to screen readers.
-**Action:** Replaced the `<div>` with a `<button>` and added an `aria-label` for semantic correctness and better keyboard interaction (focus tracking and activation). Also applied `aria-live="polite"` to the dynamic text containers to ensure they are announced appropriately to assistive technologies as their content changes without needing user focus.
