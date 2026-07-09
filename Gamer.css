@@ -11,16 +11,14 @@
 
 nav {
     background-color: rgb(242, 244, 247);
-}
-
-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 45px;
+    padding-top: 1px;
     padding-right: 8%;
     padding-left: 8%;
-
+    /* padding-bottom: 15px; */
+    /* // height: 50px; */
 }
 
 h1 {
@@ -31,12 +29,6 @@ h1 {
 
 span {
     color: rgb(226, 27, 183);
-}
-
-nav {
-    padding-top: 1px;
-    /* padding-bottom: 15px; */
-    /* // height: 50px; */
 }
 
 nav ul.right li {
