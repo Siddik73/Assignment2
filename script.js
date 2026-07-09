@@ -17,7 +17,9 @@ function init3D() {
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    // ⚡ Bolt Optimization: Cap pixel ratio to 2 to prevent excessive GPU load on high DPI displays
+    // (e.g. 3x or 4x on mobile devices), saving battery life while keeping visuals crisp.
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);

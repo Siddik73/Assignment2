@@ -1,0 +1,3 @@
+## 2026-07-09 - Capping Device Pixel Ratio in Three.js
+**Learning:** High-density displays (e.g., 3x, 4x on mobile) can cause severe performance issues in WebGL applications by forcing the GPU to render millions of extra pixels with no perceptible visual benefit.
+**Action:** Always cap `renderer.setPixelRatio(window.devicePixelRatio)` to a maximum of 2 using `Math.min(window.devicePixelRatio, 2)`. This saves battery and vastly improves framerates.
