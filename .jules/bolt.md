@@ -1,3 +1,3 @@
-## 2026-07-09 - Capping Device Pixel Ratio in Three.js
-**Learning:** High-density displays (e.g., 3x, 4x on mobile) can cause severe performance issues in WebGL applications by forcing the GPU to render millions of extra pixels with no perceptible visual benefit.
-**Action:** Always cap `renderer.setPixelRatio(window.devicePixelRatio)` to a maximum of 2 using `Math.min(window.devicePixelRatio, 2)`. This saves battery and vastly improves framerates.
+## 2026-07-09 - Netlify Case Sensitivity
+**Learning:** Netlify deployments are case-sensitive regarding the entry point. A file named `Index.html` (uppercase 'I') will cause deploy failures because the system specifically looks for `index.html`.
+**Action:** Always ensure the main HTML entry point is named strictly `index.html` in lowercase.
