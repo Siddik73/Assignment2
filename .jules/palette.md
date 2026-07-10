@@ -1,0 +1,3 @@
+## 2026-07-10 - Screen Reader Support for Minigame Interaction
+**Learning:** Custom interactive elements (like the brick minigame) using `<div>` hinder keyboard users and screen readers from effectively discovering and engaging with interactive elements. Without `aria-live`, real-time updates (like counters and messages) are invisible to screen reader users.
+**Action:** Use native `<button>` tags with appropriate `aria-label`s for click targets. Add `aria-live="polite"` to dynamically updating text containers to ensure they are announced gracefully when their contents change.
