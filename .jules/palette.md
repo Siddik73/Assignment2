@@ -1,0 +1,3 @@
+## 2024-05-24 - Semantic Interaction Elements
+**Learning:** The mini-game interaction previously used a `<div>` for its clickable element, which lacks native keyboard navigation (focus) and screen reader semantics. Additionally, the hit counter and durability messages were not announced when they updated.
+**Action:** Replaced interactive `<div>` with a semantic `<button>` ensuring native keyboard accessibility without requiring custom JS key handlers. Added `aria-label` to provide context for icon-only/visual-only buttons. Added `aria-live="polite"` to dynamically updating text counters/messages to ensure screen readers announce updates smoothly.
