@@ -1,0 +1,4 @@
+## 2026-07-12 - Missing Subresource Integrity (SRI) for CDN Scripts
+**Vulnerability:** The application was loading 3rd-party scripts (Three.js, GSAP, ScrollTrigger) from `cdnjs.cloudflare.com` without Subresource Integrity (SRI) verification (`integrity` attribute) and `crossorigin="anonymous"`.
+**Learning:** Even well-known CDNs can be compromised, or DNS spoofing can occur. Loading scripts without verifying their integrity leaves the application vulnerable to malicious code execution if the CDN serves altered files.
+**Prevention:** Always include `integrity` (with SHA-384 or SHA-512 hashes) and `crossorigin="anonymous"` attributes when linking external scripts or stylesheets from CDNs. Use tools like `openssl dgst` or `srihash.org` to generate the hashes.
