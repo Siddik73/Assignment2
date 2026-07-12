@@ -1,3 +1,0 @@
-## 2024-07-12 - Semantic HTML for Interactive Mini-Game Elements
-**Learning:** Using a simple `<div>` for interactive custom UI elements like mini-game targets causes a lack of accessibility out-of-the-box, as `<div>`s are not inherently focusable by keyboards (tab order) and cannot be activated via Enter or Space key without explicit scripting.
-**Action:** Always use semantic HTML like `<button>` for any interactive clicking components to ensure automatic keyboard focusability, proper screen reader support (roles), and native key activation support. Add `aria-label` when the element has no visible text.

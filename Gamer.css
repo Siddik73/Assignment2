@@ -197,8 +197,6 @@ h1, h2, h3, .logo {
 }
 
 #brick-2d {
-    padding: 0;
-    outline: none;
     width: 200px;
     height: 100px;
     background-color: #aa3333;
@@ -207,11 +205,6 @@ h1, h2, h3, .logo {
     cursor: pointer;
     transition: transform 0.1s ease;
     border: 2px solid #551111;
-}
-
-#brick-2d:focus-visible {
-    outline: 3px solid #ffffff;
-    outline-offset: 4px;
 }
 
 #brick-2d:active {
