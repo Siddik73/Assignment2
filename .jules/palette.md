@@ -1,0 +1,3 @@
+## 2026-07-13 - [Semantic HTML Conversions Require Explicit Resets]
+**Learning:** In this project, when converting non-semantic HTML elements (like `div`) to semantic interactive elements (like `button`) for better accessibility, there are no global CSS reset frameworks in place. This means browser default styles for form controls (padding, outlines, etc.) will leak in and cause visual regressions.
+**Action:** Always apply explicit CSS resets (e.g., `padding: 0; outline: none;`) to the newly converted semantic elements and manually implement `:focus-visible` styles to ensure proper keyboard navigation focus indicators without breaking the visual design.
