@@ -1,0 +1,3 @@
+## 2024-10-24 - Interactive Element Accessibility
+**Learning:** When converting non-semantic elements (like a `<div>`) to semantic `<button>` elements for minigames, native keyboard access is gained, but default browser button styling must be explicitly reset (`padding: 0`, `outline: none`) if there is no global CSS reset framework. Additionally, adding `aria-live="polite"` to status messages allows screen readers to natively announce dynamic game state updates without disrupting the user.
+**Action:** Always verify if a custom global CSS reset exists before relying on it when swapping div for button. Always use `aria-live` regions for live game stat updates instead of relying solely on visual changes.
