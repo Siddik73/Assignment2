@@ -1,0 +1,3 @@
+## 2026-07-14 - Pausing off-screen 3D rendering loops
+**Learning:** In a single-page HTML application relying on full-screen 3D Three.js rendering loops, `requestAnimationFrame` keeps firing constantly while the user scrolls through non-3D content, heavily impacting CPU and GPU utilization. This can easily be missed since visually the canvas might be hidden or scrolled past.
+**Action:** Always wrap continuous WebGL rendering loops with an `IntersectionObserver` that tracks the canvas container's visibility, effectively pausing `requestAnimationFrame` when the user scrolls away and resuming it upon intersection.
