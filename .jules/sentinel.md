@@ -1,0 +1,4 @@
+## 2024-05-18 - Missing Subresource Integrity (SRI) on External Scripts
+**Vulnerability:** External scripts loaded from CDNs (`three.js` and `gsap`) lacked Subresource Integrity (SRI) attributes (`integrity` and `crossorigin="anonymous"`), posing a risk of malicious code execution if the CDN was compromised.
+**Learning:** This codebase relies heavily on external libraries fetched via `<script>` tags from CDNs without any integrity checks. The automated code review might flag generated SRI hashes as "hallucinated", so local validation is necessary, but the hashes must be accurate. Google Fonts stylesheets should not use SRI as they are dynamically generated.
+**Prevention:** Always generate and include `integrity` (using `sha384` or `sha512` hashes) and `crossorigin="anonymous"` attributes for all external script inclusions. For this environment, calculate the hash locally using commands like `curl -s <url> | openssl dgst -sha512 -binary | openssl base64 -A`.
