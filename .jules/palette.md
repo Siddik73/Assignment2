@@ -1,0 +1,3 @@
+## 2026-07-15 - Explicit CSS Resets for Semantic UI Elements
+**Learning:** This codebase lacks a global CSS reset framework. Converting non-semantic elements (like `div`) to semantic interactive elements (like `button`) requires applying explicit CSS resets (`padding: 0`, `outline: none`, `border: none`, `background: transparent`) to prevent visual regressions, especially when the original non-semantic element had its own border and background properties defined.
+**Action:** When implementing semantic HTML upgrades for accessibility (e.g., div to button) in this specific repository, always review the original CSS and add necessary inline or class-based resets to maintain the exact visual design while improving UX and accessibility.
