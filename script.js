@@ -1,6 +1,8 @@
 // script.js
 
 let scene, camera, renderer, brick;
+let isCanvasVisible = true;
+let animationFrameId = null;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 
@@ -85,8 +87,19 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Render loop - Performance optimization: pause when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+            if (isCanvasVisible && !animationFrameId) {
+                animate();
+            } else if (!isCanvasVisible && animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        });
+    });
+    observer.observe(container);
 }
 
 function setupInteraction(container) {
@@ -145,7 +158,8 @@ function onWindowResize() {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+    if (!isCanvasVisible) return;
+    animationFrameId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
