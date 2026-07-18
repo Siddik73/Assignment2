@@ -1,0 +1,3 @@
+## 2024-05-24 - Pausing WebGL Rendering for Off-screen Elements
+**Learning:** In a codebase featuring full-screen Three.js WebGL scenes (like the hero section here), keeping the rendering loop running continuously causes heavy CPU/GPU usage even when the user has scrolled down and the scene is completely invisible. The built-in requestAnimationFrame only pauses when the entire tab is hidden, not when the specific DOM element is off-screen.
+**Action:** When utilizing WebGL canvases that are not constantly visible, wrap the `renderer.render()` call in an `IntersectionObserver` that toggles an `isRendering` boolean flag based on the container's visibility in the viewport.
