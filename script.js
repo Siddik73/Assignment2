@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = false;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -81,6 +82,7 @@ function init3D() {
 
     // Interaction setup
     setupInteraction(container);
+    setupRenderObserver(container);
 
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
@@ -144,9 +146,24 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function setupRenderObserver(container) {
+    // ⚡ Bolt: Use IntersectionObserver to pause rendering when the canvas is off-screen
+    // This saves CPU/GPU resources by not drawing frames the user can't see.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isRendering = entry.isIntersecting;
+        });
+    }, { threshold: 0 });
+
+    observer.observe(container);
+}
+
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // ⚡ Bolt: Only render the scene if the canvas is currently visible in the viewport
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
