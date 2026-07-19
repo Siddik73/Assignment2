@@ -1,0 +1,3 @@
+## 2024-05-18 - Semantic Conversions for Dynamic UI Elements
+**Learning:** When converting non-semantic dynamic elements (like `div`) to semantic ones (`button`) in this app, missing explicit CSS resets (`padding: 0`, `outline: none`, `border: none`, `background: transparent`) causes visual regressions since the project lacks a global CSS reset framework. Additionally, dynamic update elements require `aria-live="polite"` so screen readers properly announce hits and durability status messages natively without disruptive custom focus behaviors.
+**Action:** Always include explicit CSS resets when converting elements to `<button>`, add `:focus-visible` styles for keyboard navigation, and wrap dynamically updating interactive state messages with `aria-live` attributes.
