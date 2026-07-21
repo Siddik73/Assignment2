@@ -17,23 +17,24 @@ h1, h2, h3, .logo {
 }
 
 /* Moving Gradient Background */
+/* ⚡ Bolt: Using transform instead of background-position avoids layout/paint thrashing and uses GPU acceleration */
 .gradient-bg {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: -150vh;
+    left: -150vw;
+    width: 400vw;
+    height: 400vh;
     background: linear-gradient(45deg, #0a0a0a, #1a0505, #2c0505, #0a0a0a);
-    background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
     z-index: -1;
     opacity: 0.8;
+    will-change: transform;
 }
 
 @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(25%, 25%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
 }
 
 /* Premium Navigation */
