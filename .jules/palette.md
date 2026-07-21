@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility and Semantic Elements in The Brick
+**Learning:** In this vanilla HTML/CSS codebase, interactive minigame elements were implemented as non-semantic `<div>`s, which lacked keyboard accessibility and screen reader support. Dynamic status updates were also not announced to screen readers.
+**Action:** When converting non-semantic elements to interactive ones (like `<button>`), always add explicit CSS resets (`padding: 0`, `outline: none`) and `:focus-visible` styles to match the existing UI while providing keyboard feedback. Additionally, add `aria-live="polite"` to containers with dynamic text (like hit counters and status messages) so screen readers natively announce the updates without disrupting the user.
