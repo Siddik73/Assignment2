@@ -205,10 +205,17 @@ h1, h2, h3, .logo {
     cursor: pointer;
     transition: transform 0.1s ease;
     border: 2px solid #551111;
+    padding: 0;
+    outline: none;
 }
 
 #brick-2d:active {
     transform: scale(0.95);
+}
+
+#brick-2d:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
 }
 
 #hit-counter {
