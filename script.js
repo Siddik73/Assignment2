@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let resizeTimeout; // ⚡ Bolt: Variable to track resize debounce timeout
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -138,10 +139,14 @@ function setupInteraction(container) {
     });
 }
 
+// ⚡ Bolt: Debouncing window resize event to reduce layout thrashing and excessive recalculations
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }, 150);
 }
 
 function animate() {
