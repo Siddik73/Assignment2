@@ -1,0 +1,3 @@
+## 2026-07-23 - Accessibility Updates and Global Resets
+**Learning:** This project lacks a global CSS reset. When converting non-semantic elements (like `div`) to semantic interactive elements (like `button`), visual regressions occur unless explicit CSS resets (e.g., `padding: 0`, `outline: none`) are manually applied to the new semantic element. Additionally, interactive minigames and dynamic text elements require `aria-live="polite"` so screen readers can announce dynamic status updates natively.
+**Action:** When introducing semantic HTML, explicitly add structural resets in `Gamer.css`. Ensure any dynamic status text container receives `aria-live="polite"`.
