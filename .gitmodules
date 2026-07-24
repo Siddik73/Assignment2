@@ -1,0 +1,27 @@
+[submodule "skills/Agent-Reach"]
+	path = skills/Agent-Reach
+	url = https://github.com/Agent-Reach/Agent-Reach.git
+[submodule "skills/GSAP"]
+	path = skills/GSAP
+	url = https://github.com/GSAP/GSAP.git
+[submodule "skills/caveman"]
+	path = skills/caveman
+	url = https://github.com/caveman/caveman.git
+[submodule "skills/get-shit-done"]
+	path = skills/get-shit-done
+	url = https://github.com/get-shit-done/get-shit-done.git
+[submodule "skills/gsd-core"]
+	path = skills/gsd-core
+	url = https://github.com/gsd-core/gsd-core.git
+[submodule "skills/impeccable"]
+	path = skills/impeccable
+	url = https://github.com/impeccable/impeccable.git
+[submodule "skills/shadergradient"]
+	path = skills/shadergradient
+	url = https://github.com/shadergradient/shadergradient.git
+[submodule "skills/system_prompts_leaks"]
+	path = skills/system_prompts_leaks
+	url = https://github.com/system_prompts_leaks/system_prompts_leaks.git
+[submodule "skills/ui-ux-pro-max-skill"]
+	path = skills/ui-ux-pro-max-skill
+	url = https://github.com/ui-ux-pro-max-skill/ui-ux-pro-max-skill.git
