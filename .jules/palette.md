@@ -1,0 +1,3 @@
+## 2026-07-25 - Interactive Minigame Accessibility Pattern
+**Learning:** Minigames built with `div`s lack native semantics for keyboard operability and dynamic status updates. Without ARIA roles and `aria-live`, screen reader users miss crucial state changes and cannot interact effectively.
+**Action:** Always replace purely interactive `div` elements with `<button>` (adding appropriate `aria-label`) and use `aria-live="polite"` on message containers for status changes to ensure seamless, accessible interactions.
