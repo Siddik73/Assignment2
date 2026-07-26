@@ -1,0 +1,3 @@
+## 2024-07-26 - Semantic Interactive Elements and Dynamic Updates
+**Learning:** In interactive minigames or dynamic UI components (like the brick hit counter), converting non-semantic divs to semantic buttons requires explicit CSS resets (`padding: 0`, `outline: none`) to prevent visual regressions while keeping core styles. Additionally, `aria-live="polite"` must be added to status containers so screen readers natively announce dynamic updates without disrupting the user.
+**Action:** Always apply explicit CSS resets and `:focus-visible` styles when converting divs to buttons, and use `aria-live` on containers that update dynamically based on user interaction.
