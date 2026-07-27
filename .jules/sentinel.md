@@ -1,0 +1,4 @@
+## 2026-07-27 - Missing Subresource Integrity (SRI) for Core Libraries
+**Vulnerability:** External CDN scripts (`three.min.js`, `gsap.min.js`, `ScrollTrigger.min.js`) were included in `Index.html` without Subresource Integrity (SRI) validation or `crossorigin` attributes.
+**Learning:** The application heavily relies on these external scripts for core 3D rendering and animations. Without SRI, if the CDN is compromised, a malicious script could be injected and executed on the client-side, leading to a critical XSS vulnerability.
+**Prevention:** Always generate and include SHA-384 SRI hashes and `crossorigin="anonymous"` when pulling third-party executable resources from a CDN.
