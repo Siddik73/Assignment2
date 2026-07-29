@@ -1,0 +1,3 @@
+## 2024-07-29 - Semantic Minigames and Screen Reader Announcements
+**Learning:** Interactive UI components that are purely visual or game-like (such as click targets or hit counters) are completely inaccessible if built with generic `<div>` elements without ARIA attributes. Furthermore, dynamic updates to these elements are not announced by screen readers by default.
+**Action:** Always use semantic elements like `<button>` for interactive targets, and ensure they have descriptive `aria-label`s if they lack visible text. Apply `aria-live="polite"` to containers that display dynamic status updates (like counters or messages) so that screen readers announce these changes without disrupting the user's flow.
