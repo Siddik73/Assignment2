@@ -1,0 +1,3 @@
+## 2024-05-23 - IntersectionObserver for Three.js Rendering
+**Learning:** Optimizing Three.js continuous rendering loops by pausing off-screen rendering using `IntersectionObserver` should conditionally wrap only the `renderer.render()` call while keeping `requestAnimationFrame()` running, so background tracking tied to the animation frame isn't blocked.
+**Action:** Always wrap `renderer.render()` instead of `requestAnimationFrame()` when pausing off-screen canvas rendering.
