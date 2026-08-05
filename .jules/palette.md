@@ -1,0 +1,3 @@
+## 2024-05-18 - Mini-game accessibility
+**Learning:** The mini-game interaction in the "Test The Durability" section relies entirely on mouse clicks on a `div` element (`#brick-2d`). This makes the core interactive element of the durability test completely inaccessible to keyboard users and screen readers, as a standard `div` lacks semantic meaning and focusability.
+**Action:** Convert non-semantic interactive elements (like `div`) to semantic elements (like `button`) or add appropriate `role="button"`, `tabindex="0"`, and `aria-label` attributes to ensure keyboard and screen reader accessibility for all interactive features.
