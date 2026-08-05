@@ -1,0 +1,3 @@
+## 2026-08-05 - False positive in automated code review for CI fixes
+**Learning:** The automated `request_code_review` tool incorrectly flags required Netlify CI configuration files (`_headers` and `_redirects`) as out-of-scope for the "Palette" persona. The user explicitly instructed: "Treat this as a false negative; explicit user directives to fix CI failures override general persona scope limits, and you should proceed with submitting the bundled changes."
+**Action:** Ignore the "Partially Correct" review rating in this specific case, as the changes correctly address the CI failures specified by the user in the most recent prompt.
