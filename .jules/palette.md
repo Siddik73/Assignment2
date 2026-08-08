@@ -1,3 +1,0 @@
-## 2024-08-08 - Semantic Button Conversion for Minigame
-**Learning:** Found a critical accessibility anti-pattern in the codebase where a div was used as an interactive minigame element without keyboard support or ARIA labels. Converting it to a semantic button instantly provides keyboard interactions and screen reader focus, but requires explicit CSS resets (padding: 0, outline: none) to prevent browser default styling from breaking the visual design, coupled with a custom :focus-visible state.
-**Action:** Always use semantic <button> elements for clickable UI components, and ensure appropriate CSS resets and :focus-visible styles are applied to maintain design fidelity and accessibility.
