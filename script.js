@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true; // Optimization: track visibility
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -62,6 +63,12 @@ function init3D() {
     brick.rotation.y = -0.5;
 
     scene.add(brick);
+
+    // Optimization: Pause rendering when canvas is off-screen to save GPU/CPU
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
 
     // Initial animation (floating)
     gsap.to(brick.position, {
@@ -146,7 +153,10 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // Optimization: Only render when the 3D canvas is visible
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
