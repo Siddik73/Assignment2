@@ -1,0 +1,3 @@
+## 2024-08-10 - Made custom interactive elements accessible
+**Learning:** The `#brick-2d` minigame relied on a generic `<div>` tag with click handlers. This meant the interactive element lacked native keyboard focusability, semantic meaning (role), and screen reader announcements, making it entirely inaccessible to non-mouse users.
+**Action:** When converting non-semantic interactive `<div>` elements to semantic `<button>` elements, always explicitly apply CSS resets (like `padding: 0`, `outline: none`, `display: block`) to the new button to preserve the existing visual layout and prevent browser default styles from causing visual regressions.
