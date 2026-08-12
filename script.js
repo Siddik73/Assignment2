@@ -85,8 +85,7 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Render loop handled by IntersectionObserver in initVisibilityObserver()
 }
 
 function setupInteraction(container) {
@@ -144,8 +143,34 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+let animationFrameId = null;
+
+function initVisibilityObserver() {
+    const container = document.getElementById('canvas-container');
+    if (!container) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!animationFrameId) {
+                    animate();
+                }
+            } else {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            }
+        });
+    });
+
+    observer.observe(container);
+}
+
 function animate() {
-    requestAnimationFrame(animate);
+    // ⚡ Bolt: Performance Optimization - Store frame ID to pause rendering when off-screen
+    // Pausing the Three.js render loop saves significant CPU/GPU resources when scrolled down
+    animationFrameId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
@@ -218,6 +243,7 @@ function initMiniGame() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    initVisibilityObserver();
     init3D();
     initScrollAnimations();
     initMiniGame();
