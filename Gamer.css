@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
@@ -209,6 +213,11 @@ h1, h2, h3, .logo {
 
 #brick-2d:active {
     transform: scale(0.95);
+}
+
+#brick-2d:focus-visible {
+    outline: 3px solid #ffaa00;
+    outline-offset: 4px;
 }
 
 #hit-counter {
