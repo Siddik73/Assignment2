@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -86,6 +87,14 @@ function init3D() {
     window.addEventListener('resize', onWindowResize, false);
 
     // Render loop
+    // ⚡ Bolt: Pause Three.js rendering when canvas is off-screen to save CPU/GPU
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    }, { threshold: 0 });
+    observer.observe(container);
+
     animate();
 }
 
@@ -146,7 +155,10 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // ⚡ Bolt: Only render if canvas is currently intersecting the viewport
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
