@@ -3,6 +3,8 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isVisible = true; // ⚡ Bolt: Track visibility
+let animationFrameId = null; // ⚡ Bolt: Track frame request
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,8 +87,20 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // ⚡ Bolt: Pause off-screen rendering to save CPU/GPU and battery
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isVisible = entry.isIntersecting;
+            if (isVisible) {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animate();
+            } else {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        });
+    });
+    observer.observe(container);
 }
 
 function setupInteraction(container) {
@@ -145,8 +159,10 @@ function onWindowResize() {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+    if (!isVisible) return; // ⚡ Bolt: Skip render if not visible
+
     renderer.render(scene, camera);
+    animationFrameId = requestAnimationFrame(animate);
 }
 
 function initScrollAnimations() {
