@@ -3,9 +3,16 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
+
+    // Setup intersection observer to pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        isRendering = entries[0].isIntersecting;
+    });
+    observer.observe(container);
 
     // Scene
     scene = new THREE.Scene();
@@ -146,7 +153,9 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
