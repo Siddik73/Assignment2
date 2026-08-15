@@ -197,6 +197,9 @@ h1, h2, h3, .logo {
 }
 
 #brick-2d {
+    display: block;
+    padding: 0;
+    outline: none;
     width: 200px;
     height: 100px;
     background-color: #aa3333;
@@ -279,4 +282,8 @@ h1, h2, h3, .logo {
     letter-spacing: 2px;
     position: relative;
     z-index: 10;
+}
+:focus-visible {
+    outline: 2px solid #ff3333;
+    outline-offset: 4px;
 }
