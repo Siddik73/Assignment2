@@ -1,0 +1,3 @@
+## 2024-05-18 - Interactive Element Semantic HTML
+**Learning:** A visual UI component styled as an interactive 'brick' in a minigame lacked semantic HTML structure (implemented as a `div`), making it inaccessible to screen readers and keyboard navigation. Using semantic tags like `<button>` is crucial for accessibility, but requires CSS resets (`padding: 0`, `outline: none`, `display: block`) to avoid breaking the original layout.
+**Action:** Always convert non-semantic interactive elements (`div` or `span` with `onclick`) to semantic elements (`button` or `a`). Apply necessary CSS resets to preserve design while ensuring full keyboard functionality and providing screen reader support via ARIA attributes.
