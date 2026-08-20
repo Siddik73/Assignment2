@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -145,8 +146,30 @@ function onWindowResize() {
 }
 
 function animate() {
+    if (!isRendering) return;
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+}
+
+// Performance: Pause 3D rendering when hero is off-screen
+function initIntersectionObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (!isRendering) {
+                    isRendering = true;
+                    animate();
+                }
+            } else {
+                isRendering = false;
+            }
+        });
+    }, { threshold: 0 });
+
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        observer.observe(heroSection);
+    }
 }
 
 function initScrollAnimations() {
@@ -221,4 +244,5 @@ document.addEventListener('DOMContentLoaded', () => {
     init3D();
     initScrollAnimations();
     initMiniGame();
+    initIntersectionObserver();
 });
