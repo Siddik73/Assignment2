@@ -1,3 +1,3 @@
-## 2024-08-24 - Pausing 3D Rendering with IntersectionObserver
-**Learning:** Found an opportunity to pause the heavy 3D requestAnimationFrame loop when the canvas container is completely off-screen, saving CPU/GPU cycles.
-**Action:** Always consider adding IntersectionObserver for requestAnimationFrame loops tied to specific UI elements that scroll out of view.
+## 2024-08-17 - Pause off-screen rendering
+**Learning:** Three.js renderers run continuously inside `requestAnimationFrame`, causing unnecessary GPU and CPU overhead when the canvas is not in the viewport.
+**Action:** Use an `IntersectionObserver` to track the canvas visibility and conditionally bypass the `renderer.render` call inside the animation loop when off-screen.

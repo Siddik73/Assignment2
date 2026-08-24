@@ -3,10 +3,16 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
-let animationFrameId = null;
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
+
+    // Performance: Pause rendering when canvas is off-screen
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
 
     // Scene
     scene = new THREE.Scene();
@@ -86,16 +92,8 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Performance Optimization: Pause rendering when off-screen to save CPU/GPU
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !animationFrameId) {
-            animate();
-        } else if (!entries[0].isIntersecting && animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-        }
-    });
-    observer.observe(container);
+    // Render loop
+    animate();
 }
 
 function setupInteraction(container) {
@@ -154,8 +152,10 @@ function onWindowResize() {
 }
 
 function animate() {
-    animationFrameId = requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
