@@ -1,0 +1,3 @@
+## 2024-10-27 - Semantic Interactive Elements
+**Learning:** When a non-semantic element like a `div` is used as an interactive target (e.g., in a mini-game), screen readers won't recognize it as actionable, and keyboard users can't easily tab to it. Also dynamic text changes in counters aren't announced without `aria-live`.
+**Action:** Convert interactive `div`s to semantic `button`s with appropriate `aria-label`s, add explicit CSS resets (`padding: 0`, `outline: none`, `display: block`) to prevent visual regressions from browser defaults, implement `:focus-visible` for keyboard navigation, and add `aria-live="polite"` to dynamic text regions.
