@@ -5,11 +5,21 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     background-color: #0a0a0a;
     overflow-x: hidden;
+}
+
+/* Accessibility: Focus visible styles for keyboard navigation */
+:focus-visible {
+    outline: 2px solid #ff4444;
+    outline-offset: 4px;
 }
 
 h1, h2, h3, .logo {
@@ -197,6 +207,7 @@ h1, h2, h3, .logo {
 }
 
 #brick-2d {
+    padding: 0;
     width: 200px;
     height: 100px;
     background-color: #aa3333;
