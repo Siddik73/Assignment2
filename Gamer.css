@@ -280,3 +280,7 @@ h1, h2, h3, .logo {
     position: relative;
     z-index: 10;
 }
+#brick-2d:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
