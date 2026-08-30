@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = true; // Tracks if canvas is in viewport
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,6 +86,12 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // Performance: Pause Three.js rendering when out of viewport
+    const observer = new IntersectionObserver((entries) => {
+        isRendering = entries[0].isIntersecting;
+    });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
@@ -146,7 +153,10 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // Optimization: Skip GPU render call if canvas is not visible
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
