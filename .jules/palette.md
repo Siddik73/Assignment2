@@ -1,0 +1,3 @@
+## 2024-10-24 - Interactive Elements Implemented as Non-Semantic Tags
+**Learning:** The application implements interactive mini-game components (like the durability brick) as non-semantic `<div>` elements rather than native `<button>` elements, breaking keyboard accessibility and screen reader support.
+**Action:** When making custom interactive components accessible, convert `<div>` elements to `<button>` tags with appropriate `aria-label`s, and reset default browser button styling using `appearance: none; padding: 0;` to ensure visual design parity while gaining native keyboard accessibility.
