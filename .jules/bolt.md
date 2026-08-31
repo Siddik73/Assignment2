@@ -1,0 +1,3 @@
+## 2024-05-18 - Off-screen 3D rendering overhead
+**Learning:** In a typical Three.js setup, the `requestAnimationFrame` loop continually calls `renderer.render()` even when the canvas element is completely out of the viewport. For a single-page marketing site like this with a 3D hero section, this causes severe, continuous background CPU/GPU drain while the user reads the rest of the content.
+**Action:** Always implement an `IntersectionObserver` on the WebGL canvas container to pause the explicit `renderer.render()` calls when `isIntersecting` is false. The animation loop itself can continue running (which is cheap), but skipping the render pass saves significant resources.
