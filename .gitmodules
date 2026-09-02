@@ -1,0 +1,12 @@
+[submodule "skills/communication"]
+	path = skills/communication
+	url = https://github.com/Siddik73/communication.git
+[submodule "skills/leadership"]
+	path = skills/leadership
+	url = https://github.com/Siddik73/leadership.git
+[submodule "skills/problem-solving"]
+	path = skills/problem-solving
+	url = https://github.com/Siddik73/problem-solving.git
+[submodule "skills/teamwork"]
+	path = skills/teamwork
+	url = https://github.com/Siddik73/teamwork.git
