@@ -85,6 +85,14 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // Performance optimization: Pause rendering when canvas is off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isRendering = entry.isIntersecting;
+        });
+    });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
@@ -144,9 +152,13 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+let isRendering = true;
+
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
