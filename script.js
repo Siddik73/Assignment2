@@ -82,20 +82,10 @@ function init3D() {
 
     // Interaction setup
     setupInteraction(container);
+    setupVisibilityObserver(container);
 
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
-
-    // Performance Optimization: Pause rendering when off-screen
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            isCanvasVisible = entry.isIntersecting;
-        });
-    }, { threshold: 0.1 });
-    const homeSection = document.getElementById('home');
-    if (homeSection) {
-        observer.observe(homeSection);
-    }
 
     // Render loop
     animate();
@@ -156,8 +146,18 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function setupVisibilityObserver(container) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    }, { threshold: 0 });
+    observer.observe(container);
+}
+
 function animate() {
     requestAnimationFrame(animate);
+    // ⚡ Bolt: Only render when the canvas is visible to save GPU/CPU cycles
     if (isCanvasVisible) {
         renderer.render(scene, camera);
     }
