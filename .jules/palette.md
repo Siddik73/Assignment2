@@ -1,0 +1,3 @@
+## 2026-09-07 - Accessibility of Custom Minigame Elements
+**Learning:** Custom interactive elements (like a "brick" minigame) implemented using `<div>` tags require explicit transformation to semantic elements (like `<button>`) to ensure keyboard navigability, and dynamic text updates must be announced to screen readers using `aria-live`.
+**Action:** Always use native semantic elements (`<button>`, `<a>`) for interactive elements instead of `<div>` or `<span>`, explicitly reset default styles if necessary, ensure they have clear `:focus-visible` states, and use `aria-live` for dynamic counter or message updates.
