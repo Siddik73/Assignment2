@@ -3,9 +3,16 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
+
+    // Performance optimization: observer to pause off-screen rendering
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
 
     // Scene
     scene = new THREE.Scene();
@@ -146,7 +153,11 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+
+    // Performance optimization: only render when visible to save GPU/CPU
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
