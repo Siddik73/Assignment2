@@ -1,3 +1,3 @@
-## 2024-09-09 - Accessible Interactive Visual Elements
-**Learning:** Custom interactive visual elements (like mini-games) implemented with non-semantic tags (`div`) hide interactivity from assistive technologies and break keyboard navigation. Adding ARIA labels alone isn't enough; they need semantic interactive elements (`button`) and `aria-live` regions for dynamic updates.
-**Action:** Always replace `div`-based click targets with `button` tags, reset browser default styles (`appearance: none`, `padding: 0`), add focus-visible styles, and use `aria-live` for associated dynamic text changes.
+## 2024-05-24 - Semantic elements in interactive widgets
+**Learning:** Custom interactive components (like the minigame brick) were built using non-semantic `div`s, indicating a pattern of missing keyboard support for interactive elements.
+**Action:** When working on custom interactive elements, ensure they are converted to semantic `<button>` tags and `aria-live` regions are used for dynamic feedback.
