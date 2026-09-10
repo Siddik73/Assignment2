@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,6 +86,14 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // Performance Optimization: Pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isRendering = entry.isIntersecting;
+        });
+    });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
@@ -146,7 +155,11 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+
+    // Performance Optimization: Skip render when off-screen
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
