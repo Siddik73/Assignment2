@@ -3,6 +3,9 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+// ⚡ Bolt Performance Optimization: Track visibility to pause 3D rendering
+let animationFrameId = null;
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,6 +88,25 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // ⚡ Bolt Performance Optimization: Pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (!isCanvasVisible) {
+                    isCanvasVisible = true;
+                    animate(); // Resume rendering
+                }
+            } else {
+                isCanvasVisible = false;
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            }
+        });
+    }, { threshold: 0 });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
@@ -145,7 +167,8 @@ function onWindowResize() {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+    if (!isCanvasVisible) return;
+    animationFrameId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
