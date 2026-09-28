@@ -197,6 +197,8 @@ h1, h2, h3, .logo {
 }
 
 #brick-2d {
+    appearance: none;
+    padding: 0;
     width: 200px;
     height: 100px;
     background-color: #aa3333;
