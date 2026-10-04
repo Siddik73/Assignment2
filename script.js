@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isRendering = false; // Add state variable for the IntersectionObserver
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,8 +86,20 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Intersection Observer to pause rendering when out of view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const wasRendering = isRendering;
+            isRendering = entry.isIntersecting;
+
+            // Only restart the loop if it's transitioning from hidden to visible
+            if (isRendering && !wasRendering) {
+                animate();
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
 }
 
 function setupInteraction(container) {
@@ -145,6 +158,7 @@ function onWindowResize() {
 }
 
 function animate() {
+    if (!isRendering) return; // Exit loop if not rendering
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
