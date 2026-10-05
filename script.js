@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -87,6 +88,14 @@ function init3D() {
 
     // Render loop
     animate();
+
+    // Visibility optimization
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    }, { threshold: 0.0 });
+    observer.observe(container);
 }
 
 function setupInteraction(container) {
@@ -146,7 +155,9 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
