@@ -85,8 +85,21 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Intersection Observer to pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!animationId) animate();
+            } else {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+            }
+        });
+    });
+    const homeElement = document.getElementById('home');
+    if (homeElement) observer.observe(homeElement);
 }
 
 function setupInteraction(container) {
@@ -144,9 +157,11 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+let animationId = null;
+
 function animate() {
-    requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    animationId = requestAnimationFrame(animate);
 }
 
 function initScrollAnimations() {
