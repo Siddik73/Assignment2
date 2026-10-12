@@ -2,6 +2,7 @@
 
 let scene, camera, renderer, brick;
 let isDragging = false;
+let isCanvasVisible = true;
 let previousMousePosition = { x: 0, y: 0 };
 
 function init3D() {
@@ -17,8 +18,16 @@ function init3D() {
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
+
+    // Performance Optimization: Only render when canvas is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    });
+    observer.observe(container);
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);
 
@@ -146,6 +155,7 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
+    if (!isCanvasVisible) return;
     renderer.render(scene, camera);
 }
 
