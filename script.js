@@ -180,9 +180,17 @@ function initMiniGame() {
 
     let hits = 0;
 
-    brick2D.addEventListener('click', () => {
+    const handleBrickHit = () => {
         hits++;
         hitCounter.innerText = `${hits} Hits`;
+
+        // Scale animation for keyboard interaction
+        gsap.to(brick2D, {
+            scale: 0.95,
+            duration: 0.05,
+            yoyo: true,
+            repeat: 1
+        });
 
         // Shake animation
         gsap.to(brick2D, {
@@ -212,6 +220,15 @@ function initMiniGame() {
                 boxShadow: "0 0 50px #ff3333",
                 duration: 1
             });
+        }
+    };
+
+    brick2D.addEventListener('click', handleBrickHit);
+
+    brick2D.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleBrickHit();
         }
     });
 }
