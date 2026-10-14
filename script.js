@@ -3,9 +3,18 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true; // ⚡ Bolt: Track visibility
 
 function init3D() {
     const container = document.getElementById('canvas-container');
+
+    // ⚡ Bolt: Set up Intersection Observer to pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    }, { rootMargin: "0px", threshold: 0.0 });
+    observer.observe(container);
 
     // Scene
     scene = new THREE.Scene();
@@ -146,7 +155,10 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // ⚡ Bolt: Only render if canvas is visible to save CPU/GPU cycles
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
