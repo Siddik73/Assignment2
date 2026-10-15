@@ -85,8 +85,8 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Render loop (managed by observer)
+    setupVisibilityObserver(container);
 }
 
 function setupInteraction(container) {
@@ -144,8 +144,32 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+// PERFORMANCE OPTIMIZATION: Track canvas visibility to pause WebGL rendering
+// Impact: Reduces CPU/GPU usage when the 3D scene is scrolled out of view.
+let isCanvasVisible = true;
+let animationFrameId = null;
+
+function setupVisibilityObserver(container) {
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+        if (isCanvasVisible) {
+            // Only start animating if we aren't already
+            if (!animationFrameId) {
+                animate();
+            }
+        } else {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+    });
+    observer.observe(container);
+}
+
 function animate() {
-    requestAnimationFrame(animate);
+    if (!isCanvasVisible) return;
+    animationFrameId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
