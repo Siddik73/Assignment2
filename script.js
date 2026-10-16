@@ -87,6 +87,17 @@ function init3D() {
 
     // Render loop
     animate();
+
+    // Performance Optimization: Pause WebGL rendering when off-screen
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isRendering = entry.isIntersecting;
+            });
+        });
+        observer.observe(heroSection);
+    }
 }
 
 function setupInteraction(container) {
@@ -144,9 +155,14 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+let isRendering = true;
+
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // Only render the Three.js scene when the canvas is visible in the viewport
+    if (isRendering) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
