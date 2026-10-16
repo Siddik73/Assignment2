@@ -180,7 +180,7 @@ function initMiniGame() {
 
     let hits = 0;
 
-    brick2D.addEventListener('click', () => {
+    const hitAction = () => {
         hits++;
         hitCounter.innerText = `${hits} Hits`;
 
@@ -212,6 +212,14 @@ function initMiniGame() {
                 boxShadow: "0 0 50px #ff3333",
                 duration: 1
             });
+        }
+    };
+
+    brick2D.addEventListener('click', hitAction);
+    brick2D.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            hitAction();
         }
     });
 }
