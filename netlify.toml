@@ -1,2 +1,4 @@
+[build]
+  ignore = "git diff --quiet \$CACHED_COMMIT_REF \$COMMIT_REF . || true"
 [build.environment]
   GIT_SUBMODULE_FETCH = "false"
