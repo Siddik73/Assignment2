@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true;
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -17,7 +18,8 @@ function init3D() {
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    // ⚡ Bolt: Cap pixel ratio to 2 for performance on high-DPI displays
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);
@@ -146,7 +148,10 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // ⚡ Bolt: Only render 3D scene when canvas is visible to save CPU/GPU
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
@@ -216,9 +221,22 @@ function initMiniGame() {
     });
 }
 
+function initIntersectionObserver() {
+    const container = document.getElementById('canvas-container');
+    if (!container) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isCanvasVisible = entry.isIntersecting;
+        });
+    });
+    observer.observe(container);
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     init3D();
+    initIntersectionObserver();
     initScrollAnimations();
     initMiniGame();
 });
