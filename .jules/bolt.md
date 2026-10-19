@@ -5,3 +5,7 @@
 ## 2024-10-19 - Fixing Netlify CI Submodule Issues
 **Learning:** Adding `netlify.toml` with `GIT_SUBMODULE_FETCH = "false"` isn't always enough if the repository contains broken or unauthorized submodule tracking pointers (like a deleted `.gitmodules` file but lingering gitlink entries). Netlify's deployment can still fail when it attempts to initialize or clone the repo tree.
 **Action:** When a repository has broken submodule links that cause CI failures, explicitly remove them using `git rm --cached <submodule-path>` and physically delete the directory if necessary before submission to ensure a clean build tree.
+
+## 2024-10-19 - Submodule cleanup for CI
+**Learning:** If one broken submodule causes a Netlify failure, it's highly likely that all unmapped submodules (folders within `skills/` tracking external repos without a `.gitmodules` file) will also cause the build to fail in sequence.
+**Action:** Always run `git submodule status` iteratively and remove *all* problematic submodules from the cache using `git rm --cached <path>` to ensure a clean build tree for CI/CD deployments.
