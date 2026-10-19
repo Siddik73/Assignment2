@@ -180,6 +180,13 @@ function initMiniGame() {
 
     let hits = 0;
 
+    brick2D.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            brick2D.click();
+        }
+    });
+
     brick2D.addEventListener('click', () => {
         hits++;
         hitCounter.innerText = `${hits} Hits`;
