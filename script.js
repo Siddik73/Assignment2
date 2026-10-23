@@ -3,6 +3,7 @@
 let scene, camera, renderer, brick;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
+let isCanvasVisible = true; // ⚡ Bolt: Track visibility for render optimization
 
 function init3D() {
     const container = document.getElementById('canvas-container');
@@ -85,6 +86,12 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // ⚡ Bolt Performance Optimization: Observe canvas visibility to pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
@@ -146,7 +153,12 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+
+    // ⚡ Bolt Performance Optimization: Skip WebGL rendering if canvas is not in viewport
+    // Impact: Significantly reduces GPU/CPU usage and battery drain when user scrolls down
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
