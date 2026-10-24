@@ -93,23 +93,26 @@ function setupInteraction(container) {
     // Mouse Events
     container.addEventListener('mousedown', (e) => {
         isDragging = true;
+        // Capture initial position on drag start to prevent tracking during hover
+        previousMousePosition = { x: e.offsetX, y: e.offsetY };
     });
 
     container.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            const deltaMove = {
-                x: e.offsetX - previousMousePosition.x,
-                y: e.offsetY - previousMousePosition.y
-            };
+        // Early return to prevent unnecessary calculations and memory allocations
+        if (!isDragging) return;
 
-            const rotationSpeed = 0.005;
+        const deltaMove = {
+            x: e.offsetX - previousMousePosition.x,
+            y: e.offsetY - previousMousePosition.y
+        };
 
-            brick.rotation.y += deltaMove.x * rotationSpeed;
-            brick.rotation.x += deltaMove.y * rotationSpeed;
+        const rotationSpeed = 0.005;
 
-            // Optional: Pause auto-rotation when interacting
-            gsap.killTweensOf(brick.rotation);
-        }
+        brick.rotation.y += deltaMove.x * rotationSpeed;
+        brick.rotation.x += deltaMove.y * rotationSpeed;
+
+        // Optional: Pause auto-rotation when interacting
+        gsap.killTweensOf(brick.rotation);
 
         previousMousePosition = {
             x: e.offsetX,
@@ -127,14 +130,6 @@ function setupInteraction(container) {
             repeat: -1,
             ease: "linear"
         });
-    });
-
-    // Initial position tracking
-    container.addEventListener('mouseenter', (e) => {
-        previousMousePosition = {
-            x: e.offsetX,
-            y: e.offsetY
-        };
     });
 }
 
