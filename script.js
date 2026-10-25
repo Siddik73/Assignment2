@@ -85,9 +85,18 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
+    // Performance Optimization: Pause rendering when off-screen
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
+
     // Render loop
     animate();
 }
+
+// Global visibility flag for performance optimization
+let isCanvasVisible = true;
 
 function setupInteraction(container) {
     // Mouse Events
@@ -146,7 +155,11 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+
+    // Performance: Only render the 3D scene when it is visible in the viewport
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
