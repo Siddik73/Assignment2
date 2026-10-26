@@ -1,6 +1,0 @@
-[build]
-  command = "echo 'Build successful'"
-  publish = "."
-
-[build.environment]
-  GIT_SUBMODULE_FETCH = "false"
