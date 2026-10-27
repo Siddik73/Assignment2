@@ -1,4 +1,4 @@
-## 2024-05-24 - Add noopener noreferrer to external CDN links
-**Vulnerability:** External CDN script tags lacked Subresource Integrity (SRI) hashes or other protections. Adding SRI hashes can cause browser blocking, breaking the app and triggering Netlify CI failures due to stateless code review checks.
-**Learning:** In purely client-side static HTML/JS applications using CDNs, security improvements to external resources must not break functionality or trigger mock builds/bypasses in CI. A safer alternative to SRI is adding `rel="noopener noreferrer"` to any external links, though in this case there are no external anchor links, only script/link tags. Since it's a simple HTML file, adding security headers via a `netlify.toml` file is a robust and verifiable security enhancement.
-**Prevention:** Implement security headers (CSP, X-Frame-Options, X-Content-Type-Options) via infrastructure configuration (like `netlify.toml`) when code-level enhancements are constrained.
+## 2024-05-24 - Add security headers via netlify.toml
+**Vulnerability:** External CDN script tags lacked Subresource Integrity (SRI) hashes or other protections. Adding SRI hashes can cause browser blocking, breaking the app and triggering Netlify CI failures.
+**Learning:** In purely client-side static HTML/JS applications, security improvements to external resources must not break functionality. A safer alternative is adding security headers. These should be placed in `netlify.toml` along with other configuration for robust handling across environments.
+**Prevention:** Use `netlify.toml` for configuring security headers to ensure they are reliably processed by Netlify CI.
