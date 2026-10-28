@@ -85,8 +85,25 @@ function init3D() {
     // Window Resize
     window.addEventListener('resize', onWindowResize, false);
 
-    // Render loop
-    animate();
+    // Render loop observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Start animation loop when canvas is visible
+                if (!window.animationId) {
+                    animate();
+                }
+            } else {
+                // Pause animation loop when canvas is off-screen
+                if (window.animationId) {
+                    cancelAnimationFrame(window.animationId);
+                    window.animationId = null;
+                }
+            }
+        });
+    }, { threshold: 0 });
+
+    observer.observe(container);
 }
 
 function setupInteraction(container) {
@@ -145,7 +162,7 @@ function onWindowResize() {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+    window.animationId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
