@@ -86,6 +86,10 @@ function init3D() {
     window.addEventListener('resize', onWindowResize, false);
 
     // Render loop
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(container);
     animate();
 }
 
@@ -144,9 +148,12 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+let isCanvasVisible = true;
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    if (isCanvasVisible) {
+        renderer.render(scene, camera);
+    }
 }
 
 function initScrollAnimations() {
