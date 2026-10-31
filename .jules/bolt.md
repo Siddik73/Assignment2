@@ -1,0 +1,3 @@
+## 2024-11-01 - 3D Render Loop Optimization
+**Learning:** In a single-page scrolling application with a prominent 3D Hero section, allowing the `requestAnimationFrame` render loop to continue rendering `THREE.WebGLRenderer` while the canvas is off-screen causes severe performance degradation, unnecessary GPU usage, and battery drain.
+**Action:** Always wrap the `renderer.render()` call in the animation loop with a visibility check (e.g., `if (isCanvasVisible)`) and use an `IntersectionObserver` on the canvas container to toggle this boolean state, ensuring we only render when the user can actually see it.
