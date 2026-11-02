@@ -1,0 +1,3 @@
+## 2024-11-02 - WebGL High DPI Performance
+**Learning:** In Three.js, blindly using `window.devicePixelRatio` on modern displays (like 3x/4x mobile screens) causes exponential increases in fragment shader calculations, leading to massive framerate drops and battery drain. For example, a pixel ratio of 3 means 9x the pixels are rendered compared to 1x.
+**Action:** Always cap `renderer.setPixelRatio()` to a maximum of 2 using `Math.min(window.devicePixelRatio, 2)`. The visual difference between 2x and 3x is imperceptible, but the performance gain is massive (reduces render workload by 50%+ on high DPI displays).
