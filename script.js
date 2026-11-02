@@ -214,6 +214,13 @@ function initMiniGame() {
             });
         }
     });
+
+    brick2D.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            brick2D.click();
+        }
+    });
 }
 
 // Initialize when DOM is ready
