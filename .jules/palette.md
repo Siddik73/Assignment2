@@ -1,0 +1,3 @@
+## 2024-11-11 - Semantic Interactive Elements
+**Learning:** A generic `<div>` element used as an interactive button (`#brick-2d`) lacks native keyboard navigation (Tab focus) and accessibility context (Enter/Space support). Converting it to a semantic `<button>` element inherently provides these accessibility features while maintaining compatibility with existing JavaScript `click` listeners.
+**Action:** Always prefer semantic `<button>` elements for custom clickable interactions to automatically inherit a11y behaviors, and supplement with `aria-label` for screen reader clarity if the button lacks visible text.
